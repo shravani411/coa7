@@ -1,0 +1,48 @@
+def simple_memory_hierarchy():
+    try:
+        n = int(input("Enter number of hierarchy levels: "))
+        if n <= 0:
+            print("Error: Number of levels must be greater than 0.")
+            return
+
+        total_cost = 0
+        total_size = 0
+        avg_access_time = 0
+        miss_ratio = 1.0
+
+        for i in range(n):
+            print(f"\n--- Level {i + 1} ---")
+            
+            c = float(input(" Cost per bit (₹): "))
+            s = int(input(" Size (bits): "))
+            
+            # Input validation for hit ratio
+            h = float(input(" Hit ratio (0 to 1): "))
+            if not (0 <= h <= 1):
+                print("Error: Hit ratio must be between 0 and 1. Resetting to 0.0.")
+                h = 0.0
+            
+            ta = float(input(" Access time (µs): "))
+            
+            # If it's the last level, force hit ratio to 1.0 to ensure completion
+            if i == n - 1 and h < 1.0:
+                print(f" Note: Forcing Level {i + 1} hit ratio to 1.0 to capture remaining references.")
+                h = 1.0
+
+            total_cost += c * s
+            total_size += s
+            
+            # Calculate effective access time contribution
+            avg_access_time += miss_ratio * h * ta
+            miss_ratio *= (1.0 - h)
+        
+        avg_cost_per_bit = total_cost / total_size if total_size > 0 else 0
+
+        print(f"Average cost per bit: ₹ {avg_cost_per_bit:.4f}")
+        print(f"Average Access time:  {avg_access_time:.4e} µs")
+
+    except ValueError:
+        print("Error: Please enter valid numerical values.")
+
+if __name__ == "__main__":
+    simple_memory_hierarchy()
