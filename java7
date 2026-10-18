@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Email and Password Validation</title>
+</head>
+<body>
+<h2>Login Form</h2>
+<form onsubmit="return validate()">
+Email:
+<input type="text" id="email" required>
+<br><br>
+Password:
+<input type="password" id="password" required>
+<br><br>
+<input type="submit" value="Login">
+</form>
+ <script>
+function validate() {
+let email = document.getElementById("email").value;
+let pswd = document.getElementById("password").value;
+if (!email.includes("@") || !email.includes(".")) {
+alert("Email must contain @ and .");
+return false;
+}
+if (!/[A-Za-z]/.test(pswd) || !/[0-9]/.test(pswd)) {
+alert("Password must contain letters and numbers.");
+return false;
+}
+alert("Login successful!");
+return true;
+}
+    </script>
+</body>
+</html>
