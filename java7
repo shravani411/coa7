@@ -2,6 +2,69 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Background Color</title>
+<style>
+body {
+transition: 0.5s;
+}</style>
+</head>
+<body>
+<h1>Dynamic Background Color</h1>
+<script>
+let colors = ["pink", "yellow", "red", "orange", "navy"];
+let i = 0;
+function changeColor() {
+document.body.style.backgroundColor = colors[i];
+i = (i + 1) % colors.length;
+}
+
+changeColor();
+setInterval(changeColor, 5000);
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
     <title>Email and Password Validation</title>
 </head>
 <body>
